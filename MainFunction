@@ -48,7 +48,7 @@ namespace PurchaseApp
                 }
                 if(inputNumber != 4){
                     Console.WriteLine("Please select a new option. ");
-                    inputNumber = (char)Console.Read();
+                    inputNumber = Console.Read();
                 }
             }
 
