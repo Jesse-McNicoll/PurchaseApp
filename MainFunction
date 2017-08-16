@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Management.Automation;
+
+namespace PurchaseApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Data Instantiation
+            int inputNumber = 0;
+
+
+            //Process
+
+            Console.WriteLine("Automation of Purchase Orders.");
+            Console.WriteLine("Please enter the corresponding number for the listed options:");
+            Console.WriteLine("1.  Create a new sample data file");
+            Console.WriteLine("2.  Create a purchase order for the next day");
+            Console.WriteLine("3.  Send email of purchase order");
+            Console.WriteLine("4.  Exit the Application");
+
+            //Store the input
+            inputNumber = Console.Read();
+
+            while (inputNumber != 4)
+            {
+                switch (inputNumber)
+                {
+                    case 1:
+                        createNewFile();
+                        break;
+                    case 2:
+                        createPurchaseOrder();
+                        break;
+                    case 3:
+                        sendEmail();
+                        break;
+                    case 4:
+                        break;
+                    default:
+                        Console.WriteLine("You did not enter a correct option.  Please try again.");
+                        break;
+                }
+                if(inputNumber != 4){
+                    Console.WriteLine("Please select a new option. ");
+                    inputNumber = (char)Console.Read();
+                }
+            }
+
+            return;
+                      
+        }
+
+        public void createNewFile(){
+            using(PowerShell PowerShellInstance = PowerShell.Create()){
+                
+            }
+        }
+    }
+}
