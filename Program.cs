@@ -6,12 +6,20 @@ using System.Threading.Tasks;
 using System.Management.Automation;
 using PowerShell = System.Management.Automation.PowerShell;
 using System.Diagnostics;
+using System.Numerics;
 using System.IO;
+//This is shady.
+using Microsoft.VisualBasic;
+
+
 
 namespace PurchaseApp
 {
     class Program
     {
+        enum Utensils { fork, knife, spoon };
+        enum DataFields { utensil, quantity, needByDate };
+
         static void Main(string[] args)
         {
         //Data Instantiation
@@ -123,13 +131,35 @@ namespace PurchaseApp
         public void createPurchaseOrder(ref String dataPath){
 
             //Variables
-            FileStream DataFile = new FileStream(dataPath, FileMode.OpenOrCreate, FileAccess.Read);
+            StreamReader DataFile = new StreamReader(dataPath);
+            string FileLine;
+            //Create an array to hold the current purchase amounts for fork, knife, and spoon.  
+            int[] PurchaseCounts = new int[3];
+            List<string[]> DataEntries = new List<string[]>();
 
             //I NEED TO MAKE THIS FILE PATH UNIVERSAL.  
             //Create the purchase order csv file to allow for writing to it as the data file is processed.
             FileStream PurchaseOrder = new FileStream(@"C:\users\jessem\Purchase_Tables\PurchaseOrder.csv", FileMode.OpenOrCreate, FileAccess.Write);
 
-            //Process
+            //Read the first line of data to skip the heading
+            DataFile.ReadLine();
+
+            //Enter a do..while loop to process the data to the end of the file.
+            do
+            {
+                //Read a line of the data into a string so that it can be parsed
+                FileLine = DataFile.ReadLine();
+
+                //Split the string into its needed fields to allow for processing of data and add to the list of string arrays
+                DataEntries.Add(FileLine.Split(','));              
+                
+            } while (!DataFile.EndOfStream);
+
+
+
+            //Now, traverse through the array and search for the 
+
+            
 
      
                
